@@ -1,9 +1,9 @@
 PROGRAM = dvd_screensaver
-OBJS=main.o screen.o
+OBJS=main.o dvd.o screen.o
 CC = gcc
 
 all: ${OBJS}
-	${CC} ${OBJS} -lraylib -o ${PROGRAM}
+	${CC} -g ${OBJS} -lraylib -o ${PROGRAM}
 
 run: ${PROGRAM}
 	./${PROGRAM} ${ARGS}
