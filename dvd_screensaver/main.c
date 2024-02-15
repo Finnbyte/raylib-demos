@@ -22,6 +22,8 @@ static Pos dvd_pos = { 0 };
 
 static int dvd_x_velocity = 0;
 static int dvd_y_velocity = 0;
+static Texture2D dvd_textures[DVD_COLORS_LENGTH] = {0};
+static size_t current_dvd_texture_index = 0;
 static int bounces = 0;
 static Sound collision_sound;
 
@@ -51,6 +53,10 @@ int main() {
 
 static void UnloadResources(void) {
     UnloadSound(collision_sound);
+static void InitDVDTextures(void) {
+    for (size_t i = 0; i < DVD_COLORS_LENGTH; i++) {
+        dvd_textures[i] = load_dvd_texture(dvd_colors[i]);
+    }
 }
 
 static void InitDVD(void) {
@@ -58,6 +64,8 @@ static void InitDVD(void) {
     dvd_y_velocity = 6;
     dvd_pos.x = INITIAL_DVD_X;
     dvd_pos.y = INITIAL_DVD_Y;
+    dvd.texture = dvd_textures[INITIAL_DVD_TEXTURE_INDEX];
+    current_dvd_texture_index = INITIAL_DVD_TEXTURE_INDEX;
 }
 
 static void UpdateDrawFrame(void) {
