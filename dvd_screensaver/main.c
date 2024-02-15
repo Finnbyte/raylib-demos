@@ -24,11 +24,9 @@ static DVD dvd = {0};
 static Texture2D dvd_textures[DVD_COLORS_LENGTH] = {0};
 static size_t current_dvd_texture_index = 0;
 static int bounces = 0;
-static Sound collision_sound;
 
 static void on_dvd_collision(void) {
     bounces += 1;
-    PlaySound(collision_sound);
 
     size_t new_texture_index;
     // Iterate until we get a unique index
@@ -38,9 +36,6 @@ static void on_dvd_collision(void) {
 }
 
 int main() {
-    InitAudioDevice();
-    collision_sound = LoadSound("./resources/boing.wav");
-
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib-physics: DVD Screensaver");
     // DVD position doesn't update without this flag set while window is minimized
     SetConfigFlags(FLAG_WINDOW_ALWAYS_RUN);
@@ -55,12 +50,10 @@ int main() {
     }
 
     UnloadResources();
-    CloseAudioDevice();
     CloseWindow();
 }
 
 static void UnloadResources(void) {
-    UnloadSound(collision_sound);
 static void InitDVDTextures(void) {
     for (size_t i = 0; i < DVD_COLORS_LENGTH; i++) {
         dvd_textures[i] = load_dvd_texture(dvd_colors[i]);
