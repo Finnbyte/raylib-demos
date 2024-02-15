@@ -1,5 +1,5 @@
-#include <raylib.h>
 #include <stddef.h>
+#include <raylib.h>
 #include "screen.h"
 #include <stdio.h>
 
@@ -30,6 +30,8 @@ int main() {
     collision_sound = LoadSound("./resources/boing.wav");
 
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "raylib-physics: DVD Screensaver");
+    // DVD position doesn't update without this flag set while window is minimized
+    SetConfigFlags(FLAG_WINDOW_ALWAYS_RUN);
 
     InitDVD();
 
