@@ -1,3 +1,5 @@
+#include <raylib.h>
+
 #ifndef __BOUNCING_DVD_H__
 #define __BOUNCING_DVD_H__
 
@@ -6,11 +8,19 @@ typedef struct {
     int y;
 } Pos;
 
-void UpdateDVD(Pos *pos, int *dvd_x_velocity, int *dvd_y_velocity, void (*on_collision)(void)) ;
+typedef struct {
+    Pos pos;
+    Texture2D texture;
+    int width;
+    int height;
+    int velocity_x;
+    int velocity_y;
+} DVD;
 
-void DrawDVD(Pos pos);
+void UpdateDVD(DVD* dvd, void (*on_collision)(void));
+
+void DrawDVD(DVD dvd);
 
 void DrawBounceCounter(int x, int y, int font_size, int bounces);
-
 
 #endif // !__BOUNCING_DVD_H__
