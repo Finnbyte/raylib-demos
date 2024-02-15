@@ -31,6 +31,12 @@ static Sound collision_sound;
 static void on_dvd_collision(void) {
     bounces += 1;
     PlaySound(collision_sound);
+
+    size_t new_texture_index;
+    // Iterate until we get a unique index
+    while ((new_texture_index = rand() % DVD_COLORS_LENGTH) == current_dvd_texture_index) {}
+    dvd.texture = dvd_textures[new_texture_index];
+    current_dvd_texture_index = new_texture_index;
 }
 
 int main() {
