@@ -1,12 +1,17 @@
 #include <raylib.h>
 #include <stddef.h>
 #include "screen.h"
+#include "dvd.h"
 #include <stdio.h>
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 450
 #define INITIAL_DVD_X 200
 #define INITIAL_DVD_Y 200
+#define INITIAL_DVD_TEXTURE_INDEX 1 // blue
+#define DVD_COLORS_LENGTH 8
+
+const char* dvd_colors[DVD_COLORS_LENGTH] = { "green", "blue", "magenta", "orange", "red", "yellow", "purple", "cyan" };
 
 static void InitDVD(void);
 static void UpdateDrawFrame(void);
